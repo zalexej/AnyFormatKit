@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct FormattedTextValue: Equatable {
+@objc public class FormattedTextValue: NSObject {
   public let formattedText: String
   public let caretBeginOffset: Int
   
