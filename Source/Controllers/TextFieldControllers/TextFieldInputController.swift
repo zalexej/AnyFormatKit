@@ -8,9 +8,9 @@
 
 import UIKit
 
-open class TextFieldInputController: NSObject, UITextFieldDelegate {
+@objc open class TextFieldInputController: NSObject, UITextFieldDelegate {
     
-    open var formatter: TextInputFormatter?
+    @objc open var formatter: TextInputFormatter?
     
     open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let formatter = formatter else { return true }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class DefaultTextInputFormatter: TextInputFormatter, TextFormatter, TextUnformatter {
+@objc open class DefaultTextInputFormatter: NSObject, TextInputFormatter, TextFormatter, TextUnformatter {
     
     // MARK: - Dependencies
     
@@ -29,6 +29,20 @@ open class DefaultTextInputFormatter: TextInputFormatter, TextFormatter, TextUnf
      - patternSymbol: Optional parameter, that represent character, that will be replaced in formatted string
      - prefix: String, that always will be at beggining of text during editing
      */
+    @objc public init(
+        textPattern: String
+    ) {
+        self.caretPositionCorrector = CaretPositionCorrector(
+            textPattern: textPattern,
+            patternSymbol: "#"
+        )
+        self.textFormatter = DefaultTextFormatter(
+            textPattern: textPattern,
+            patternSymbol: "#"
+        )
+        self.stringCalculator = StringCalculator()
+    }
+
     public init(
         textPattern: String,
         patternSymbol: Character = "#"
@@ -70,13 +84,13 @@ open class DefaultTextInputFormatter: TextInputFormatter, TextFormatter, TextUnf
     
     // MARK: - TextFormatter
     
-    open func format(_ unformattedText: String?) -> String? {
+    @objc open func format(_ unformattedText: String?) -> String? {
         return textFormatter.format(unformattedText)
     }
     
     // MARK: - TextUnformatter
     
-    open func unformat(_ formatted: String?) -> String? {
+	@objc open func unformat(_ formatted: String?) -> String? {
         return textFormatter.unformat(formatted)
     }
     

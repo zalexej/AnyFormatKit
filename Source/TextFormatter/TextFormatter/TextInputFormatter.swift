@@ -8,8 +8,8 @@
 import Foundation
 
 /// Interface for formatter of TextInput, that allow change format of text during input
-public protocol TextInputFormatter {
+@objc public protocol TextInputFormatter {
   
-  func formatInput(
+  @objc func formatInput(
     currentText: String, range: NSRange, replacementString text: String) -> FormattedTextValue
 }
